@@ -2,927 +2,671 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Pongal celebration 2k26 Mp guys ✨😻🎊 - Our Village Memories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pongal Festival 2026 | Our Hometown Memories</title>
+    <meta name="description" content="A digital memory album for our village Pongal celebration. Watch videos, photos, and relive the moments.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* Custom Theme Setup */
         :root {
-            --primary: #FF9933; /* Saffron/Orange */
-            --secondary: #D90429; /* Deep Maroon */
-            --accent: #FFD700; /* Gold */
-            --dark: #1a0505; /* Dark Maroon/Black */
-            --light: #fff8e7; /* Cream */
-            --card-bg: #2d0a0a;
-            --text-main: #ffffff;
-            --text-muted: #ffccbc;
-            --ease: cubic-bezier(0.25, 1, 0.5, 1);
-            --header-height: 70px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --color-gold: #FFD700;
+            --color-orange: #FF8C00;
+            --color-red: #B22222;
+            --color-bg: #0F0F0F;
+            --color-card: #1A1A1A;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--dark);
-            color: var(--text-main);
+            background-color: var(--color-bg);
+            color: #f3f4f6;
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            width: 100%;
-            min-height: 100vh;
         }
 
-        /* --- TYPOGRAPHY --- */
         h1, h2, h3 {
-            font-weight: 700;
-            letter-spacing: -0.02em;
+            font-family: 'Cinzel', serif;
         }
 
-        /* --- LOADING SCREEN --- */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
+        .script-font {
+            font-family: 'Great Vibes', cursive;
         }
 
-        .loader-pot {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--primary);
-            border-radius: 50% 50% 40% 40%;
-            position: relative;
-            animation: boil 2s infinite ease-in-out;
+        /* Hero Animation & Particles */
+        .hero-gradient {
+            background: radial-gradient(circle at center, #2a1005 0%, #0f0f0f 100%);
         }
 
-        .loader-pot::before {
-            content: '';
+        .particle {
             position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 10px;
-            background: var(--light);
-            border-radius: 5px;
-            animation: overflow 2s infinite ease-in-out;
-        }
-
-        .loader-text {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: var(--accent);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            /* Use dvh for better mobile browser bar handling */
-            height: 80vh;
-            height: 80dvh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden;
-            background: radial-gradient(circle at center, #4a1010 0%, var(--dark) 80%);
-        }
-
-        .canvas-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.6;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            animation: slideUp 1s var(--ease);
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            background: linear-gradient(to right, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(255, 153, 51, 0.3);
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-
-        .hero-sub {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            padding: 0 10px;
-        }
-
-        .cta-btn {
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(217, 4, 41, 0.4);
-            transition: transform 0.3s var(--ease), box-shadow 0.3s;
-            font-weight: 600;
-        }
-
-        .cta-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* --- GALLERY TABS --- */
-        .tabs-container {
-            position: sticky;
-            top: 0;
-            background: rgba(26, 5, 5, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: flex-start; /* Better for scroll */
-            align-items: center;
-            gap: 12px;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-left: 20px;
-            padding-right: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            /* Hide scrollbar */
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE 10+ */
-        }
-        
-        /* Hide scrollbar WebKit */
-        .tabs-container::-webkit-scrollbar { 
-            display: none; 
-        }
-
-        /* Center tabs on larger screens */
-        @media (min-width: 769px) {
-            .tabs-container { justify-content: center; }
-        }
-
-        .tab-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-muted);
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0; /* Don't shrink on mobile */
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: var(--dark);
-            border-color: var(--primary);
-            font-weight: 700;
-            box-shadow: 0 0 15px rgba(255, 153, 51, 0.4);
-        }
-
-        /* --- MEDIA GRID --- */
-        .gallery-section {
-            padding: 20px 15px; /* Less padding on mobile */
-            min-height: 60vh;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            perspective: 1000px;
-        }
-
-        .media-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.4s var(--ease);
-            border: 1px solid rgba(255,255,255,0.05);
-            aspect-ratio: 3/4;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        .card-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 20px 15px;
-            transform: translateY(10px);
-            opacity: 0.8;
-            transition: all 0.3s;
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            background: var(--secondary);
-            padding: 3px 8px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-bottom: 5px;
-            color: white;
-            font-weight: 600;
-        }
-
-        .card-title {
-            font-size: 1rem;
-            color: white;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 215, 0, 0.6);
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s;
-            color: white;
+            pointer-events: none;
+            animation: floatUp linear infinite;
         }
 
-        /* Desktop Hover Effects */
-        @media (hover: hover) {
-            .media-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-                border-color: var(--primary);
-                z-index: 2;
-            }
-            .media-card:hover .card-thumb { transform: scale(1.1); }
-            .media-card:hover .card-overlay { transform: translateY(0); opacity: 1; }
-            .media-card:hover .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
-        /* Mobile Touch Optimizations (No Hover) */
-        @media (hover: none) {
-            .media-card {
-                border-color: rgba(255,255,255,0.1);
-            }
-            .card-overlay {
-                transform: translateY(0);
-                opacity: 1;
-                background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.5) 50%, transparent 100%);
-            }
-            .play-icon {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            .media-card:active {
-                transform: scale(0.98);
-            }
+        /* Card Hover Effects */
+        .memory-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* --- LIGHTBOX VIEWER --- */
-        #lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .memory-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 30px -10px rgba(255, 140, 0, 0.5);
+            z-index: 10;
         }
-
-        #lightbox.active {
-            display: flex;
+        .memory-card:hover .play-overlay {
             opacity: 1;
         }
 
-        .lb-header {
-            padding: 15px 20px;
-            /* Safe area for notch */
-            padding-top: max(15px, env(safe-area-inset-top)); 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            z-index: 1002;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        /* Lightbox/Modal */
+        .lightbox-open {
+            overflow: hidden;
         }
-
-        .lb-title { font-size: 1.1rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
-        .lb-controls-top {
-            display: flex;
-            gap: 15px;
-        }
-
-        .lb-icon-btn {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: white;
+        .loader {
+            border: 4px solid #333;
+            border-top: 4px solid var(--color-gold);
+            border-radius: 50%;
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-        }
-        .lb-icon-btn:active { background: var(--primary); color: #000; }
-
-        .lb-main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            animation: spin 1s linear infinite;
         }
 
-        .lb-content {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .lb-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: rgba(255,255,255,0.7);
-            padding: 20px;
-            font-size: 2.5rem;
-            cursor: pointer;
-            z-index: 1001;
-            /* Remove tap highlight on mobile nav arrows */
-            outline: none;
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
         }
-
-        .lb-prev { left: 0px; }
-        .lb-next { right: 0px; }
-
-        /* --- CONTROLS BAR --- */
-        .lb-toolbar {
-            position: absolute;
-            bottom: 30px;
-            /* Safe area for home bar */
-            bottom: max(30px, env(safe-area-inset-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 25px;
-            border-radius: 40px;
-            display: flex;
-            gap: 25px;
-            z-index: 1002;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .lb-tool-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-        }
-        .lb-tool-btn:active { opacity: 0.7; }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            padding-bottom: max(40px, env(safe-area-inset-bottom));
-            background: #110202;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 50px;
-        }
-
-        .dev-badge {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 25px;
-            border: 1px solid var(--primary);
+        ::-webkit-scrollbar-thumb {
+            background: #555;
             border-radius: 4px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-orange);
+        }
+
+        /* Sugarcane & Pot SVG Animations */
+        .sway {
+            animation: sway 3s ease-in-out infinite alternate;
+            transform-origin: bottom center;
+        }
+        @keyframes sway {
+            from { transform: rotate(-2deg); }
+            to { transform: rotate(2deg); }
+        }
+
+        /* Footer Link Animation */
+        .sanstudio-link {
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-
-        .dev-badge:hover {
-            box-shadow: 0 0 15px var(--primary), inset 0 0 10px var(--primary);
-            color: #fff;
-            text-decoration: underline;
+        .sanstudio-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--color-orange);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
         }
-
-        /* --- UTILITY ANIMATIONS --- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-        @keyframes boil { 0%, 100% { transform: scale(1); border-color: var(--primary); } 50% { transform: scale(1.05); border-color: var(--accent); } }
-        @keyframes overflow { 0% { width: 0; opacity: 0; } 50% { width: 80%; opacity: 1; } 100% { width: 0; opacity: 0; } }
-
-        /* Mobile Breakpoints */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
-            /* 2 Columns on mobile for density */
-            .media-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .card-title { font-size: 0.9rem; font-weight: 500; }
-            .card-overlay { padding: 12px; }
-            
-            /* Simplify lightbox nav on mobile (rely on swipe) */
-            .lb-nav-btn { display: none; } 
+        .sanstudio-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
-
-        @media (max-width: 400px) {
-             .hero-title { font-size: 2.2rem; }
+        .sanstudio-link:hover {
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
         }
     </style>
 </head>
-<body>
-
-    <!-- Loading Screen -->
-    <div id="loader">
-        <div class="loader-pot"></div>
-        <div class="loader-text">Loading Memories...</div>
-    </div>
+<body class="antialiased min-h-screen flex flex-col">
 
     <!-- Hero Section -->
-    <header class="hero">
-        <canvas id="particleCanvas" class="canvas-bg"></canvas>
-        <div class="hero-content">
-            <div style="font-size: 3rem; margin-bottom: 10px;">🍯🌾</div>
-            <h1 class="hero-title">Pongal celebration 2k26 Mp guys ✨😻🎊</h1>
-            <p class="hero-sub">Relive every smile, dance, and moment</p>
-            <button class="cta-btn" onclick="app.scrollToGallery()">View Today’s Memories</button>
+    <header class="relative w-full h-screen min-h-[600px] flex flex-col items-center justify-center overflow-hidden hero-gradient text-center px-4">
+        
+        <!-- Animated Particles Container -->
+        <div id="particles" class="absolute inset-0 z-0"></div>
+
+        <!-- Decorative Elements (SVG) -->
+        <div class="absolute bottom-0 left-0 w-32 md:w-48 opacity-80 sway pointer-events-none z-10">
+            <!-- Simple Sugarcane SVG -->
+            <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M45 200C45 200 55 150 40 100C25 50 45 0 45 0" stroke="#4ADE80" stroke-width="8"/>
+                <path d="M55 200C55 200 65 150 50 100C35 50 55 0 55 0" stroke="#22C55E" stroke-width="8"/>
+                <path d="M20 120L60 100" stroke="#166534" stroke-width="4" stroke-linecap="round"/>
+                <path d="M30 60L70 40" stroke="#166534" stroke-width="4" stroke-linecap="round"/>
+            </svg>
         </div>
+        <div class="absolute bottom-0 right-0 w-32 md:w-48 opacity-80 sway pointer-events-none z-10 transform scale-x-[-1]">
+            <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M45 200C45 200 55 150 40 100C25 50 45 0 45 0" stroke="#4ADE80" stroke-width="8"/>
+                <path d="M55 200C55 200 65 150 50 100C35 50 55 0 55 0" stroke="#22C55E" stroke-width="8"/>
+                <path d="M20 120L60 100" stroke="#166534" stroke-width="4" stroke-linecap="round"/>
+                <path d="M30 60L70 40" stroke="#166534" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <!-- Main Content -->
+        <div class="z-20 max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+            <div class="inline-block mb-4 p-2 px-4 rounded-full border border-yellow-500/30 bg-yellow-900/20 backdrop-blur-sm">
+                <span class="text-yellow-400 text-sm tracking-widest uppercase font-semibold">📍 Hometown Connect</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 drop-shadow-lg leading-tight">
+                Pongal 2026
+            </h1>
+            <p class="script-font text-3xl md:text-5xl text-gray-300 mt-2">
+                Our Memories. Forever Online.
+            </p>
+            <p class="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
+                Welcome to the digital museum of our village. Every smile, every dance, and every traditional game—captured and preserved for us to relive anytime.
+            </p>
+            
+            <div class="pt-8">
+                <button onclick="scrollToGallery()" class="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-full text-white font-bold tracking-wide shadow-lg hover:shadow-orange-500/50 transition-all duration-300 overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        View Celebration <i data-lucide="chevron-down"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Bottom Fade -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[var(--color-bg)] to-transparent z-10"></div>
     </header>
 
-    <!-- Navigation & Gallery -->
-    <nav class="tabs-container" id="tabs"></nav>
-    
-    <main class="gallery-section" id="galleryContainer">
-        <!-- Media Grid injected here -->
-        <div class="media-grid" id="grid"></div>
+    <!-- Navigation / Categories -->
+    <nav class="sticky top-0 z-40 bg-[#0F0F0F]/90 backdrop-blur-md border-b border-white/10 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+            <div class="flex items-center justify-start md:justify-center gap-2 py-4" id="category-filters">
+                <!-- Categories injected by JS -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Gallery Section -->
+    <main id="gallery-root" class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full min-h-screen">
+        <!-- Content injected by JS -->
+        <div class="text-center text-gray-500 animate-pulse">Loading Memories...</div>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p style="color: var(--text-muted); margin-bottom: 15px;">© 2026 Pongal Festival Committee</p>
-        <a href="https://sanstudio.neocities.org/" target="_blank" class="dev-badge">
-            Developed By SanStudio
-        </a>
-    </footer>
-
-    <!-- Lightbox Viewer -->
-    <div id="lightbox">
-        <div class="lb-header">
-            <span class="lb-title" id="lbTitle">Event Title</span>
-            <div class="lb-controls-top">
-                <button class="lb-icon-btn" onclick="app.shareMedia()" title="Share Link">🔗</button>
-                <button class="lb-icon-btn" onclick="app.closeLightbox()" title="Close">✕</button>
+    <!-- Fullscreen Lightbox / Media Viewer -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-lg flex flex-col transition-opacity duration-300 opacity-0">
+        
+        <!-- Header -->
+        <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-50 bg-gradient-to-b from-black/80 to-transparent">
+            <div class="text-white">
+                <h3 id="lb-title" class="text-lg font-bold line-clamp-1">Title</h3>
+                <p id="lb-counter" class="text-xs text-gray-400">1 / 10</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="lb-autoplay-btn" class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 transition text-xs text-white" onclick="toggleAutoPlay()">
+                    <i data-lucide="play-circle" class="w-4 h-4"></i> Auto Slide
+                </button>
+                <button onclick="closeLightbox()" class="p-2 rounded-full bg-red-600/80 hover:bg-red-600 transition text-white">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Left/Right only visible on desktop -->
-        <button class="lb-nav-btn lb-prev" onclick="app.prevMedia()">❮</button>
-        
-        <div class="lb-main" id="lbMain">
-            <!-- Content injected here -->
-        </div>
-        
-        <button class="lb-nav-btn lb-next" onclick="app.nextMedia()">❯</button>
+        <!-- Main Content Area -->
+        <div class="flex-grow flex items-center justify-center relative p-4 md:p-10">
+            <!-- Loading Spinner -->
+            <div id="lb-loader" class="loader absolute z-0"></div>
+            
+            <!-- Iframe Container for Drive Files -->
+            <div class="relative w-full h-full max-w-5xl max-h-[80vh] flex items-center justify-center">
+                <iframe id="lb-frame" class="w-full h-full rounded-lg shadow-2xl border border-gray-800 z-10 bg-black" 
+                        allow="autoplay; fullscreen" allowfullscreen></iframe>
+                
+                <!-- Image Fallback (if specific type is image) -->
+                <img id="lb-image" class="hidden max-w-full max-h-full object-contain rounded-lg shadow-2xl z-10" alt="Memory">
+            </div>
 
-        <div class="lb-toolbar">
-            <button class="lb-tool-btn" id="playAllBtn" onclick="app.toggleSlideshow()">
-                <span id="playIcon">▶</span> <span id="playText">Play All</span>
+            <!-- Navigation Arrows -->
+            <button onclick="changeMedia(-1)" class="absolute left-2 md:left-8 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur transition text-white z-20 group">
+                <i data-lucide="chevron-left" class="w-8 h-8 group-hover:-translate-x-1 transition-transform"></i>
             </button>
-            <button class="lb-tool-btn" onclick="app.downloadMedia()">
-                <span>⬇</span> Download
+            <button onclick="changeMedia(1)" class="absolute right-2 md:right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur transition text-white z-20 group">
+                <i data-lucide="chevron-right" class="w-8 h-8 group-hover:translate-x-1 transition-transform"></i>
             </button>
+        </div>
+
+        <!-- Footer / Controls -->
+        <div class="p-6 flex justify-center gap-6 z-50">
+            <a id="lb-download" href="#" target="_blank" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                <span class="text-[10px] uppercase tracking-wider">Download</span>
+            </a>
+            <div class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition cursor-pointer" onclick="shareMedia()">
+                <i data-lucide="share-2" class="w-5 h-5"></i>
+                <span class="text-[10px] uppercase tracking-wider">Share</span>
+            </div>
         </div>
     </div>
-<script>
 
-     /**
-         * CONFIGURATION
-         * Replace the 'src' values below with your local file paths.
-         * Example: src: "media/dance/dance_performance.mp4"
-         * * For this demo, I am using online placeholder videos/images.
-         */
+    <!-- SanStudio Footer -->
+    <footer class="w-full py-8 bg-[#0a0a0a] border-t border-white/5 text-center mt-auto">
+        <div class="max-w-xl mx-auto px-4 flex flex-col items-center justify-center gap-2">
+            <p class="text-gray-500 text-sm">Made with ❤️ for our Village</p>
+            <div class="flex items-center gap-2 text-gray-400 text-sm">
+                <span>Developed By</span>
+                <a href="https://a-santhosh-hub.github.io/in/" target="_blank" class="sanstudio-link font-bold text-orange-500 flex items-center gap-1">
+                    <span class="text-lg">⚡</span> Santhosh
+                </a>
+            </div>
+            <p class="text-[10px] text-gray-600 mt-4">
+                © 2026 Pongal Digital Album. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- DATA SOURCE ---
+        // REPLACE 'driveId' values with REAL Google Drive File IDs.
+        // NOTE: For demo purposes, I am using public placeholder IDs. 
+        // In a real scenario, paste the ID from the "Shareable Link" of the file.
         const festivalData = {
-            dance: [
-                { title: "Village Folk Dance", type: "video", src: "1.mp4", thumb: "1.png" },
-                { title: "Bharatanatyam Solo", type: "video", src: "2.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 1", type: "video", src: "3.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance  2", type: "video", src: "4.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 3", type: "video", src: "5.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance  4", type: "video", src: "6.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 5", type: "video", src: "7.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 6", type: "video", src: "8.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 7", type: "video", src: "9.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 8", type: "video", src: "10.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 9", type: "video", src: "11.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 10", type: "video", src: "12.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 11", type: "video", src: "13.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 12", type: "video", src: "14.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 13", type: "video", src: "15.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 14", type: "video", src: "16.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance 15", type: "video", src: "17.mp4", thumb: "1.png" },
-                { title: "Kids Group Dance16 ", type: "video", src: "18.mp4", thumb: "1.png" },
+            dance: {
+                label: "💃 Dance Events",
+                items: [
+                    { title: "Opening ", type: "video", date: "Jan 14, 10:00 AM", driveId: "1LnqCyk1vDhzy61a3NIXC-ZYVekWtB_z0" },
+                    { title: "Kids Folk Dance", type: "video", date: "Jan 14, 11:30 AM", driveId: "1GiFmP4VkS2O3_T9i8e5sM8zhJNDAdH9J" },
+                    
+                    
+                    
+                    { title: "Youth Group Performance", type: "video", date: "Jan 14, 02:00 PM", driveId: "1D6nnahHDYlZctqCFWF8BnoCYEYpz9Qbu" },
 
+                    { title: "Village Dance Show", type: "video", date: "Jan 14, 02:30 PM", driveId: "1YQ0t1CtLYVaVmAWrKdQVPPuz086dQpmY" },
+                    { title: "Traditional Steps", type: "video", date: "Jan 14, 03:00 PM", driveId: "1Gh2Uv7MJzUHjyvMRXjn1mlXZFhO88wzR" },
+{ title: "Folk Performance", type: "video", date: "Jan 14, 03:30 PM", driveId: "1MascMf934SSPF1yOBhp1I40sJh5XFyta" },
+{ title: "Kids Celebration", type: "video", date: "Jan 14, 04:00 PM", driveId: "1hzn_nm726fug7Jrg4x0oKshhYoL_mYnS" },
+{ title: "Village Moments", type: "video", date: "Jan 14, 04:30 PM", driveId: "1RXULNF5yxTdEpm6Nz8MWqTUYsUfIqyWD" },
+{ title: "Pongal Game Event", type: "video", date: "Jan 14, 05:00 PM", driveId: "1r2DfZ1200bJFxHWZvuxvkSGOPLD92biZ" },
+{ title: "Special Program", type: "video", date: "Jan 14, 05:30 PM", driveId: "1JHh5zG7JJJOiQodUfVh56PhALO2Up-2c" },
+{ title: "Festival Highlights", type: "video", date: "Jan 14, 06:00 PM", driveId: "1vW3UTnyTdaGxprgVtBHqhPcMw5l24xce" },
+{ title: "Cultural Dance", type: "video", date: "Jan 14, 06:30 PM", driveId: "1dfOmMjRiBVxE6w5skvhjvAeQus2DNya9" },
+{ title: "Evening Show", type: "video", date: "Jan 14, 07:00 PM", driveId: "1EmR-l9ibW35ZRn7AwBL7iTUN0DZYHQNK" },
+{ title: "Night Program", type: "video", date: "Jan 14, 07:30 PM", driveId: "14P43XVJ8vOR0JrBEAz_JAt3nFkvmkHTE" },
+{ title: "Crowd Moments", type: "video", date: "Jan 14, 08:00 PM", driveId: "1_FCMKbjrqbVECgJZk344XevEZvkGQwEX" },
+{ title: "Stage Event", type: "video", date: "Jan 14, 08:30 PM", driveId: "1n_pL6XjfEwGUGi4BwI6iTJwQhlIPq3PT" },
+{ title: "Final Dance", type: "video", date: "Jan 14, 09:00 PM", driveId: "1HJ62XnxqtZETOAbBP_2HgKImukAEqvVZ" },
+{ title: "Closing Ceremony", type: "video", date: "Jan 14, 09:30 PM", driveId: "1kESVph6UIUlVnHQbE3Oz6MOr50vBrFX2" },
+{ title: "Group Performance", type: "video", date: "Jan 14, 10:00 PM", driveId: "1qul92sdYcbyYH6R8Rp1jPZe6jeVNySNs" },
+{ title: "Village Unity", type: "video", date: "Jan 14, 10:30 PM", driveId: "1d1Nrp2nippZ8FKP1Ynebk92Mf4DvkIAh" },
+{ title: "Fireworks Moment", type: "video", date: "Jan 14, 11:00 PM", driveId: "1GVESoJ-RqtbGq2oWT5fXdvN4Nrb6THrR" },
+{ title: "Celebration End", type: "video", date: "Jan 14, 11:30 PM", driveId: "1tYzPD55LdpKOKsFNnc3FULWIq8z04EzU" },
+{ title: "Morning Memories", type: "video", date: "Jan 15, 08:00 AM", driveId: "126A2ixZ7zmVTrNe5AnQHKUScM7nL7AZU" },
+{ title: "Temple Visit", type: "video", date: "Jan 15, 09:00 AM", driveId: "1FVNILWQSkwIdcw1Iwb5tvkkd1ZKguSUq" },
+{ title: "Village Walk", type: "video", date: "Jan 15, 10:00 AM", driveId: "1JnvOIk1rBZYJz5NMhl5Dc_0srczuYa4e" },
+{ title: "Final Highlights", type: "video", date: "Jan 15, 11:00 AM", driveId: "1GezP3AozmRl1xLqoAUG0xx8GpbFRnUME" },
+{ title: "Best Moments", type: "video", date: "Jan 15, 12:00 PM", driveId: "1m3i3Mb3sAcE2YiYDGNizvVHdSqNelD1m" }
 
-        
-            ],
-            games: [
-                { title: "Uriyadi (Pot Breaking)", type: "video", src: "https://videos.pexels.com/video-files/5465992/5465992-sd_640_360_25fps.mp4", thumb: "https://images.unsplash.com/photo-1620215732159-86927c945147?w=500&q=80" },
-                { title: "Tug of War", type: "image", src: "https://images.unsplash.com/photo-1563276662-8e10086d07d4?w=800&q=80", thumb: "https://images.unsplash.com/photo-1563276662-8e10086d07d4?w=500&q=80" },
-            ],
-            events: [
-                { title: "Chief Guest Speech", type: "image", src: "https://images.unsplash.com/photo-1475721027767-4d529c1b6a11?w=800&q=80", thumb: "https://images.unsplash.com/photo-1475721027767-4d529c1b6a11?w=500&q=80" },
-                { title: "Prize Distribution", type: "video", src: "https://videos.pexels.com/video-files/8472493/8472493-sd_640_360_25fps.mp4", thumb: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=500&q=80" },
-            ],
-            photos: [
-                { title: "Cooking Pongal", type: "image", src: "https://images.unsplash.com/photo-1610363248386-35e6c703d154?w=800&q=80", thumb: "https://images.unsplash.com/photo-1610363248386-35e6c703d154?w=500&q=80" },
-                { title: "Family Smiles", type: "image", src: "https://images.unsplash.com/photo-1614945484838-892f39281577?w=800&q=80", thumb: "https://images.unsplash.com/photo-1614945484838-892f39281577?w=500&q=80" },
-                { title: "Village Elders", type: "image", src: "https://images.unsplash.com/photo-1543356019-38b827dbd23a?w=800&q=80", thumb: "https://images.unsplash.com/photo-1543356019-38b827dbd23a?w=500&q=80" },
-                { title: "Decoration", type: "image", src: "https://images.unsplash.com/photo-1611153725516-7248e3678083?w=800&q=80", thumb: "https://images.unsplash.com/photo-1611153725516-7248e3678083?w=500&q=80" },
-            ],
-            highlights: [
-                { title: "Best Moments Mashup", type: "video", src: "https://videos.pexels.com/video-files/3196296/3196296-sd_640_360_25fps.mp4", thumb: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&q=80" }
-            ]
+                ]
+            },
+            games: {
+                label: "🏏 Traditional Games",
+                items: [
+                    { title: "Uriyadi (Pot Breaking)", type: "video", date: "Jan 15, 04:00 PM", driveId: "1ehszB9p5uA-gXbsz-peiRhb28RX25nEm" },
+                    { title: "Kabaddi Finals", type: "video", date: "Jan 15, 05:30 PM", driveId: "1HLa1AG3nN_z9I874_kHWmUVsHFU5Fv7a" },
+                    { title: "Rangoli Competition", type: "image", date: "Jan 15, 09:00 AM", driveId: "1-P_h2yvYgJkL_h4zW2tT6u_example6" }
+                ]
+            },
+            culture: {
+                label: "🎭 Cultural Programs",
+                items: [
+                    { title: "Village Drama Skit", type: "video", date: "Jan 16, 06:00 PM", driveId: "1-P_h2yvYgJkL_h4zW2tT6u_example7" },
+                    { title: "Music Concert", type: "video", date: "Jan 16, 08:00 PM", driveId: "1-P_h2yvYgJkL_h4zW2tT6u_example8" }
+                ]
+            },
+            photos: {
+                label: "🖼 Group Photos",
+                items: [
+                    { title: "Village Elders", type: "image", date: "Jan 14", driveId: "1-P_h2yvYgJkL_h4zW2tT6u_example9" },
+                    { title: "Youth Committee", type: "image", date: "Jan 14", driveId: "1-P_h2yvYgJkL_h4zW2tT6u_example10" },
+                    { title: "Winner Ceremony", type: "image", date: "Jan 16", driveId: "1-P_h2yvYgJkL_h4zW2tT6u_example11" }
+                ]
+            }
         };
 
-        class FestivalApp {
-            constructor() {
-                this.currentCategory = 'dance';
-                this.currentPlaylist = [];
-                this.currentIndex = 0;
-                this.slideshowInterval = null;
-                this.isPlaying = false;
+        // --- STATE MANAGEMENT ---
+        let currentCategory = 'all';
+        let currentPlaylist = [];
+        let currentIndex = 0;
+        let autoPlayInterval = null;
+        let isAutoPlaying = false;
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initParticles();
+            renderCategories();
+            renderGallery('all');
+        });
+
+        function scrollToGallery() {
+            document.getElementById('gallery-root').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- PARTICLE SYSTEM ---
+        function initParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 25;
+
+            for (let i = 0; i < particleCount; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
                 
-                // DOM Elements
-                this.tabsContainer = document.getElementById('tabs');
-                this.grid = document.getElementById('grid');
-                this.loader = document.getElementById('loader');
-                this.lightbox = document.getElementById('lightbox');
+                // Randomize properties
+                const size = Math.random() * 8 + 2;
+                p.style.width = `${size}px`;
+                p.style.height = `${size}px`;
+                p.style.left = `${Math.random() * 100}%`;
+                p.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                p.style.animationDelay = `${Math.random() * 5}s`;
+                p.style.background = Math.random() > 0.5 ? 'var(--color-gold)' : 'var(--color-orange)';
                 
-                this.init();
-            }
-
-            init() {
-                // Simulate loading assets
-                window.addEventListener('load', () => {
-                    setTimeout(() => {
-                        this.loader.style.opacity = '0';
-                        setTimeout(() => this.loader.remove(), 500);
-                        this.initParticles();
-                    }, 1500);
-                });
-
-                this.renderTabs();
-                this.loadCategory('dance');
-                this.setupEventListeners();
-            }
-
-            // --- RENDER LOGIC ---
-
-            renderTabs() {
-                const categories = [
-                    { key: 'dance', label: '🕺 Dance' },
-                    { key: 'games', label: '🎯 Games' },
-                    { key: 'events', label: '🎤 Stage' },
-                    { key: 'photos', label: '📸 Photos' },
-                    { key: 'highlights', label: '⭐ Highlights' }
-                ];
-
-                this.tabsContainer.innerHTML = categories.map(cat => `
-                    <button class="tab-btn ${cat.key === this.currentCategory ? 'active' : ''}" 
-                            data-cat="${cat.key}"
-                            onclick="app.loadCategory('${cat.key}')">
-                        ${cat.label}
-                    </button>
-                `).join('');
-            }
-
-            loadCategory(category) {
-                this.currentCategory = category;
-                
-                // Update active tab styling
-                const btns = document.querySelectorAll('.tab-btn');
-                btns.forEach(btn => {
-                    const isActive = btn.dataset.cat === category;
-                    btn.classList.toggle('active', isActive);
-                    // Center active tab
-                    if (isActive) {
-                         btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    }
-                });
-
-                // Prepare Data
-                this.currentPlaylist = festivalData[category] || [];
-                
-                // Clear grid with fade out effect if needed, but simple innerHTML is faster
-                this.grid.innerHTML = '';
-
-                // Render Grid Items
-                if(this.currentPlaylist.length === 0) {
-                    this.grid.innerHTML = '<div style="color:var(--text-muted); padding:20px; grid-column:1/-1; text-align:center;">No memories yet. Add files to the folder!</div>';
-                    return;
-                }
-
-                this.currentPlaylist.forEach((item, index) => {
-                    const delay = index * 0.1; // Staggered animation
-                    const card = document.createElement('div');
-                    card.className = 'media-card';
-                    card.style.animationDelay = `${delay}s`;
-                    card.onclick = () => this.openLightbox(index);
-
-                    const icon = item.type === 'video' ? '▶' : '🔍';
-
-                    card.innerHTML = `
-                        <img src="${item.thumb || item.src}" class="card-thumb" alt="${item.title}" loading="lazy">
-                        <div class="play-icon">${icon}</div>
-                        <div class="card-overlay">
-                            <span class="card-tag">${item.type}</span>
-                            <div class="card-title">${item.title}</div>
-                        </div>
-                    `;
-                    this.grid.appendChild(card);
-                });
-            }
-
-            // --- LIGHTBOX LOGIC ---
-
-            openLightbox(index) {
-                this.currentIndex = index;
-                this.lightbox.classList.add('active');
-                this.updateLightboxContent();
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            }
-
-            closeLightbox() {
-                this.stopSlideshow();
-                this.lightbox.classList.remove('active');
-                
-                // Clear content to stop videos playing in background
-                setTimeout(() => {
-                    document.getElementById('lbMain').innerHTML = '';
-                    document.body.style.overflow = 'auto';
-                }, 300);
-            }
-
-            updateLightboxContent() {
-                const item = this.currentPlaylist[this.currentIndex];
-                const container = document.getElementById('lbMain');
-                document.getElementById('lbTitle').innerText = item.title;
-
-                container.innerHTML = ''; // Clear prev
-
-                if (item.type === 'video') {
-                    const video = document.createElement('video');
-                    video.className = 'lb-content';
-                    video.src = item.src;
-                    video.controls = true;
-                    video.autoplay = true;
-                    // iOS plays inline requirement
-                    video.setAttribute('playsinline', '');
-                    
-                    // Auto-advance when video ends
-                    video.onended = () => {
-                        if(this.isPlaying || true) { // Always smart-advance on video end
-                            this.nextMedia();
-                        }
-                    };
-                    
-                    container.appendChild(video);
-                } else {
-                    const img = document.createElement('img');
-                    img.className = 'lb-content';
-                    img.src = item.src;
-                    container.appendChild(img);
-                }
-
-                // Preload next image/video for performance
-                this.preloadNext(this.currentIndex + 1);
-            }
-
-            nextMedia() {
-                this.currentIndex = (this.currentIndex + 1) % this.currentPlaylist.length;
-                this.updateLightboxContent();
-            }
-
-            prevMedia() {
-                this.currentIndex = (this.currentIndex - 1 + this.currentPlaylist.length) % this.currentPlaylist.length;
-                this.updateLightboxContent();
-            }
-
-            preloadNext(idx) {
-                const nextIdx = idx % this.currentPlaylist.length;
-                const nextItem = this.currentPlaylist[nextIdx];
-                if(nextItem.type === 'image') {
-                    const img = new Image();
-                    img.src = nextItem.src;
-                }
-            }
-
-            // --- FEATURES: SLIDESHOW & SHARE ---
-
-            toggleSlideshow() {
-                if (this.isPlaying) {
-                    this.stopSlideshow();
-                } else {
-                    this.startSlideshow();
-                }
-            }
-
-            startSlideshow() {
-                this.isPlaying = true;
-                document.getElementById('playIcon').innerText = '⏸';
-                document.getElementById('playText').innerText = 'Pause';
-                
-                // Check if current is image, if so, setup timer. If video, onended handles it.
-                const currentItem = this.currentPlaylist[this.currentIndex];
-                if (currentItem.type === 'image') {
-                    this.slideshowInterval = setInterval(() => {
-                        this.nextMedia();
-                        // If we hit a video, the interval needs to pause until video ends.
-                        // Simple logic: clear interval, rely on video.onended to restart loop?
-                        // For simplicity in this robust script: we clear interval inside updateContent if video
-                    }, 3000);
-                }
-            }
-
-            stopSlideshow() {
-                this.isPlaying = false;
-                document.getElementById('playIcon').innerText = '▶';
-                document.getElementById('playText').innerText = 'Play All';
-                clearInterval(this.slideshowInterval);
-            }
-
-            downloadMedia() {
-                const item = this.currentPlaylist[this.currentIndex];
-                const link = document.createElement('a');
-                link.href = item.src;
-                link.download = `Pongal_${item.title}`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-
-            shareMedia() {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('✨ Album link copied to clipboard! Share the memories.');
-                });
-            }
-
-            scrollToGallery() {
-                this.tabsContainer.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            setupEventListeners() {
-                // Keyboard Nav
-                document.addEventListener('keydown', (e) => {
-                    if (!this.lightbox.classList.contains('active')) return;
-                    if (e.key === 'Escape') this.closeLightbox();
-                    if (e.key === 'ArrowRight') this.nextMedia();
-                    if (e.key === 'ArrowLeft') this.prevMedia();
-                });
-
-                // Swipe Detection
-                let touchStartX = 0;
-                this.lightbox.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-                this.lightbox.addEventListener('touchend', e => {
-                    let touchEndX = e.changedTouches[0].screenX;
-                    if (touchStartX - touchEndX > 50) this.nextMedia();
-                    if (touchEndX - touchStartX > 50) this.prevMedia();
-                });
-            }
-
-            // --- ANIMATION: PARTICLES ---
-            initParticles() {
-                const canvas = document.getElementById('particleCanvas');
-                const ctx = canvas.getContext('2d');
-                let width, height;
-                let particles = [];
-
-                const resize = () => {
-                    width = canvas.width = window.innerWidth;
-                    height = canvas.height = document.querySelector('.hero').offsetHeight;
-                };
-
-                class Particle {
-                    constructor() {
-                        this.reset();
-                    }
-                    reset() {
-                        this.x = Math.random() * width;
-                        this.y = Math.random() * height;
-                        this.vx = (Math.random() - 0.5) * 0.5;
-                        this.vy = (Math.random() - 0.5) * 0.5;
-                        this.size = Math.random() * 3 + 1;
-                        this.color = `rgba(255, 215, 0, ${Math.random() * 0.5})`; // Gold dust
-                    }
-                    update() {
-                        this.x += this.vx;
-                        this.y += this.vy;
-                        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
-                    }
-                    draw() {
-                        ctx.fillStyle = this.color;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-
-                const animate = () => {
-                    ctx.clearRect(0, 0, width, height);
-                    particles.forEach(p => { p.update(); p.draw(); });
-                    requestAnimationFrame(animate);
-                };
-
-                resize();
-                window.addEventListener('resize', resize);
-                for(let i=0; i<50; i++) particles.push(new Particle());
-                animate();
+                container.appendChild(p);
             }
         }
 
-        // Initialize App
-        const app = new FestivalApp();
-</script>
+        // --- RENDER FUNCTIONS ---
+        function renderCategories() {
+            const container = document.getElementById('category-filters');
+            
+            // "All" Button
+            let html = `
+                <button onclick="renderGallery('all')" class="cat-btn px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-white/10 bg-white/5 hover:bg-white/10 text-white whitespace-nowrap active-cat" data-cat="all">
+                    🌟 All Memories
+                </button>
+            `;
+
+            for (const [key, data] of Object.entries(festivalData)) {
+                html += `
+                    <button onclick="renderGallery('${key}')" class="cat-btn px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 whitespace-nowrap" data-cat="${key}">
+                        ${data.label}
+                    </button>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function renderGallery(category) {
+            currentCategory = category;
+            
+            // Update Active Button UI
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === category) {
+                    btn.classList.add('bg-orange-600', 'border-orange-500', 'text-white', 'shadow-lg', 'shadow-orange-900/50');
+                    btn.classList.remove('bg-white/5', 'text-gray-300');
+                } else {
+                    btn.classList.remove('bg-orange-600', 'border-orange-500', 'text-white', 'shadow-lg', 'shadow-orange-900/50');
+                    btn.classList.add('bg-white/5', 'text-gray-300');
+                }
+            });
+
+            const root = document.getElementById('gallery-root');
+            let content = '';
+            
+            // Prepare linear playlist based on selection
+            currentPlaylist = [];
+
+            const processCategory = (key) => {
+                const section = festivalData[key];
+                // Add items to global playlist for lightbox navigation
+                section.items.forEach(item => {
+                    // Add category key to item for reference
+                    currentPlaylist.push({ ...item, catKey: key });
+                });
+
+                return `
+                    <div class="mb-12 animate-fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <h2 class="text-2xl md:text-3xl text-white font-bold border-l-4 border-orange-500 pl-4">
+                                ${section.label}
+                            </h2>
+                            <div class="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            ${section.items.map((item, idx) => createCard(item, currentPlaylist.length - section.items.length + idx)).join('')}
+                        </div>
+                    </div>
+                `;
+            };
+
+            if (category === 'all') {
+                for (const key in festivalData) {
+                    content += processCategory(key);
+                }
+            } else {
+                content += processCategory(category);
+            }
+
+            root.innerHTML = content;
+            lucide.createIcons();
+        }
+
+        function createCard(item, playlistIndex) {
+            // Note: Since we don't have real thumbnails, we use a gradient placeholder or a generic festival icon
+            // In a real production with public drive files, you can use https://lh3.googleusercontent.com/d/${item.driveId}=s400 for thumbnails.
+            // For this demo, I will use a styled placeholder.
+            
+            const icon = item.type === 'video' ? 'play-circle' : 'image';
+            
+            // Thumbnail URL strategy: Try Google Drive thumbnail hack, fallback to gradient
+            const thumbUrl = `https://lh3.googleusercontent.com/d/${item.driveId}=w500-h400-p-k-nu`;
+
+            return `
+                <div onclick="openLightbox(${playlistIndex})" class="memory-card group relative bg-[#1A1A1A] rounded-xl overflow-hidden cursor-pointer border border-white/5 aspect-video flex flex-col">
+                    <!-- Image/Thumbnail Area -->
+                    <div class="relative w-full h-48 bg-gray-800 overflow-hidden">
+                        <img src="${thumbUrl}" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/222/orange?text=Pongal+Memory';" 
+                             alt="${item.title}" 
+                             class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                             loading="lazy">
+                        
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        
+                        <!-- Type Badge -->
+                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs text-white flex items-center gap-1">
+                            <i data-lucide="${icon}" class="w-3 h-3"></i> ${item.type}
+                        </div>
+
+                        <!-- Hover Play Button -->
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 transform scale-75 group-hover:scale-100">
+                            <div class="bg-orange-600/90 rounded-full p-3 shadow-lg text-white">
+                                <i data-lucide="${item.type === 'video' ? 'play' : 'maximize-2'}" class="w-6 h-6 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meta Data -->
+                    <div class="p-4 flex-grow flex flex-col justify-between bg-gradient-to-b from-[#1A1A1A] to-[#151515]">
+                        <div>
+                            <h3 class="text-white font-medium text-lg leading-tight group-hover:text-orange-400 transition-colors">${item.title}</h3>
+                            <p class="text-gray-500 text-xs mt-1 flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3 h-3"></i> ${item.date}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- LIGHTBOX LOGIC ---
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('hidden');
+            // Small timeout to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+            }, 10);
+            document.body.classList.add('lightbox-open');
+            loadMedia();
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0');
+            
+            // Stop Autoplay
+            stopAutoPlay();
+
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                // Clear sources to stop audio/video
+                document.getElementById('lb-frame').src = "";
+                document.getElementById('lb-image').src = "";
+            }, 300);
+            document.body.classList.remove('lightbox-open');
+        }
+
+        function loadMedia() {
+            const item = currentPlaylist[currentIndex];
+            const frame = document.getElementById('lb-frame');
+            const img = document.getElementById('lb-image');
+            const loader = document.getElementById('lb-loader');
+            
+            // Update Info
+            document.getElementById('lb-title').innerText = item.title;
+            document.getElementById('lb-counter').innerText = `${currentIndex + 1} / ${currentPlaylist.length}`;
+            document.getElementById('lb-download').href = `https://drive.google.com/uc?id=${item.driveId}&export=download`;
+
+            // Reset UI
+            loader.style.display = 'block';
+            frame.classList.add('hidden');
+            img.classList.add('hidden');
+
+            if (item.type === 'video' || item.type === 'pdf') {
+                // Use Drive Preview Link
+                const src = `https://drive.google.com/file/d/${item.driveId}/preview`;
+                frame.src = src;
+                frame.onload = () => {
+                    loader.style.display = 'none';
+                    frame.classList.remove('hidden');
+                };
+            } else {
+                // Image Handling
+                // We use the same preview link for images inside iframe to prevent CORS/hotlinking issues
+                // OR we can use the uc export link for a clean img tag if permitted. 
+                // Stick to iframe for consistency as requested, but img tag is better for UX if possible.
+                // Prompt asked for: <iframe src="...preview"></iframe>
+                // Let's stick to the prompt's request for iframe for everything, 
+                // BUT for photos, a direct img tag with the uc link is faster and looks better.
+                // Let's try direct image first, fallback to iframe logic if needed.
+                
+                // Using Iframe per strict instruction "Your system must stream directly from Google Drive using iframe preview links"
+                const src = `https://drive.google.com/file/d/${item.driveId}/preview`;
+                frame.src = src;
+                frame.onload = () => {
+                    loader.style.display = 'none';
+                    frame.classList.remove('hidden');
+                };
+            }
+
+            // Auto-advance logic check
+            if (isAutoPlaying) {
+                // Clear existing timeout
+                if (autoPlayInterval) clearTimeout(autoPlayInterval);
+                // Set new timeout (video duration is hard to detect via iframe, so we set a default 10s or 5s for photos)
+                const duration = item.type === 'video' ? 30000 : 5000; // 30s for video assumption, 5s for photo
+                autoPlayInterval = setTimeout(() => {
+                    changeMedia(1);
+                }, duration);
+            }
+        }
+
+        function changeMedia(direction) {
+            let newIndex = currentIndex + direction;
+            
+            // Loop functionality
+            if (newIndex < 0) newIndex = currentPlaylist.length - 1;
+            if (newIndex >= currentPlaylist.length) newIndex = 0;
+
+            currentIndex = newIndex;
+            loadMedia();
+        }
+
+        function toggleAutoPlay() {
+            const btn = document.getElementById('lb-autoplay-btn');
+            isAutoPlaying = !isAutoPlaying;
+
+            if (isAutoPlaying) {
+                btn.classList.add('bg-orange-600', 'text-white');
+                btn.classList.remove('bg-white/10');
+                btn.innerHTML = `<i data-lucide="pause-circle" class="w-4 h-4"></i> Stop Slide`;
+                changeMedia(1); // Start immediately
+            } else {
+                stopAutoPlay();
+                btn.classList.remove('bg-orange-600', 'text-white');
+                btn.classList.add('bg-white/10');
+                btn.innerHTML = `<i data-lucide="play-circle" class="w-4 h-4"></i> Auto Slide`;
+            }
+            lucide.createIcons();
+        }
+
+        function stopAutoPlay() {
+            isAutoPlaying = false;
+            if (autoPlayInterval) clearTimeout(autoPlayInterval);
+        }
+
+        function shareMedia() {
+            const item = currentPlaylist[currentIndex];
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Pongal Festival Memory',
+                    text: `Check out this ${item.type}: ${item.title}`,
+                    url: window.location.href // Ideally adds query param ?id=...
+                });
+            } else {
+                // Fallback
+                const tempInput = document.createElement("input");
+                tempInput.value = `Watch ${item.title}: https://drive.google.com/file/d/${item.driveId}/preview`;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                alert("Link copied to clipboard!");
+            }
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('hidden')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') changeMedia(1);
+            if (e.key === 'ArrowLeft') changeMedia(-1);
+        });
+
+    </script>
 </body>
 </html>
